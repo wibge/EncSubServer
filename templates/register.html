@@ -1,0 +1,30 @@
+{% extends config.base_template %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<h1>Create an account</h1>
+<div style="height: 50px;"></div>
+<div>
+  <form action="/register/addUser" method="post">
+    <table>
+      <tr>
+        <td>Username:</td>
+        <td><input type="text" name="email" size="30"></td>
+      </tr>
+      <tr>
+        <td>Password:</td>
+        <td><input type="password" name="password" size="30" /></td>
+      <tr>
+    </table>
+  	<input type="hidden" name="redirect" value="{{redirect}}" />
+  	<div style="margin-top:20px;">
+    	<input type="submit" value="Register" class="button"/>
+    </div>
+  </form>
+</div>
+
+<div class="login-instructions">
+
+</div>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends config.base_template %}
+
+{% block title %}My Subscriptions{% endblock %}
+
+{% block content %}
+<h1>Current Subscriptions</h1>
+{% if subscriptions %}
+  <table class="subscriptions">
+    <tr>
+      <th>Name</th>
+      <th class="date">Start Date</th>
+      <th class="date">End Date</th>
+      <th>&nbsp;</th>
+    </tr>
+    {% for sub in subscriptions %}
+      <tr>
+        <td>{{sub.subscriptionPlan.name}}</td>
+        <td class="date">{{sub.startDate|date:"m/d/Y"}}</td>
+        <td class="date">{{sub.endDate|date:"m/d/Y"}}</td>
+        <td>
+        {% if sub.updateUrl %}
+        	{% if sub.canceled %}
+				canceled - Subscription will not renew  <a href="{{sub.reactivateUrl}}">Reactivate</a>
+			{% else %}
+          		<a href="{{sub.updateUrl}}">update payment</a> <a href="{{sub.cancelUrl}}">cancel subscription</a>
+			{% endif %}
+		    
+        {% else %}
+          &nbsp;
+        {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+{% else %}
+None
+{% endif %}
+
+<div style="margin-top:10px;">
+  <a href="/subs/expiredSubscriptions">View expired subscriptions</a>
+{% if False %}
+  &nbsp;&middot;&nbsp;&nbsp;<a href="https://spreedly.com/{{spreedly_site}}/subscriber_accounts/{{user.spreedly_token}}?return_url={{request.url}}">View or change reoccurring subscriptions</a>
+{% endif %}
+</div>
+
+<div style="height:40px;"></div>
+
+<h1>Available Subscription Plans</h1>
+<table class="subscriptions">
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>&nbsp;</th>
+  </tr>
+  {% for plan in plans %}
+    <tr>
+      <td>{{plan.name}}</td>
+      <td>{{plan.description}}</td>
+      <td>
+      <!-- TODO: test on provider once we upgrade django to 1.2 -->
+      {% if plan.provider_id %}
+        {% if not plan.isAddOn or user_has_base_subscription %}
+          <a href="/purchase/form?plan_identifier={{plan.identifier}}">buy now</a>    
+        {% else %}
+          <span class="info-text">requires EFB subscription</span>
+        {% endif %}
+      {% else %}
+        &nbsp;
+      {% endif %}
+      </td>
+    </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}

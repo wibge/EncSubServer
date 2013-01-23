@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>{% block title %}Sales{% endblock %}</title>
+</head>
+<body>
+
+
+<h1>Last Week: {{ lastWeekTotals.endDate.date }} to {{ lastWeekTotals.startDate.date }}</h1>
+  <table border=1>
+    <tr>
+      <th>Product</th>
+      <th>Count</th>
+      <th>$/unit</th>
+      <th>Income</th>
+    </tr>
+    <tr>
+      <td>Total</th>
+      <td>{{ lastWeekTotals.count }}</td>
+      <td></td>
+      <td>{{ lastWeekTotals.income }}</td>
+    </tr>
+    {% for i in lastWeekTotals.products.items %}
+      <tr>
+        <td>{{ i.0 }}</td>
+        <td>{{ i.1.count }}</td>
+        <td>{{ i.1.pricePerUnit }}</td>
+        <td>{{ i.1.income }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+
+<h1>Last 30 Days: {{ lastMonthTotals.endDate.date }} to {{ lastMonthTotals.startDate.date }}</h1>
+  <table border=1>
+    <tr>
+      <th>Product</th>
+      <th>Count</th>
+      <th>$/unit</th>
+      <th>Income</th>
+    </tr>
+    <tr>
+      <td>Total</th>
+      <td>{{ lastMonthTotals.count }}</td>
+      <td></td>
+      <td>{{ lastMonthTotals.income }}</td>
+    </tr>
+    {% for i in lastMonthTotals.products.items %}
+      <tr>
+        <td>{{ i.0 }}</td>
+        <td>{{ i.1.count }}</td>
+        <td>{{ i.1.pricePerUnit }}</td>
+        <td>{{ i.1.income }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+
+
+<h1>All Sales</h1>
+  <table border=1>
+    <tr>
+      <th>Product</th>
+      <th class="date">New Subscriptions</th>
+      <th>Count</th>
+    </tr>
+    {% for sales in salesSummaries %}
+      <tr>
+        <td>{{sales.subscriptionPlan}}</td>
+        <td class="date">{{sales.date|date:"m/d/Y"}}</td>
+        <td>{{sales.count}}</td>
+      </tr>
+    {% endfor %}
+  </table>
+
+ 
+
+</body>
+</html>

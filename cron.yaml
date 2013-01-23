@@ -1,0 +1,24 @@
+cron:
+  - description: update sales numbers
+    url: /report/updateYesterday?x
+    schedule: every 24 hours
+    
+  - description: update sales numbers
+    url: /report/updateSales?x
+    schedule: every 5 minutes
+  
+  - description: email expired subscriptions
+    url: /emailer/expiringSubscriptions
+    schedule: every 1 hours
+    
+  - description: daily backup to s3
+    url: /backup/
+    schedule: every 24 hours
+    
+  - description: My Daily Backup
+    url: /_ah/datastore_admin/backup.create?name=SubServerBackup&kind=Association&kind=Device&kind=EmailProcessingStatus&kind=Giftcode&kind=ItunesReceipt&kind=Login&kind=PasswordChangeToken&kind=SalesSummary&kind=Subscription&kind=SubscriptionPlan&kind=User&filesystem=gs&gs_bucket_name=subserverbackups
+    schedule: every 24 hours
+    target: ah-builtin-python-bundle
+  
+
+

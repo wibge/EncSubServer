@@ -1,0 +1,18 @@
+<html>
+<body>
+	<h3>{{message}}</h3>
+	<form action="/emailer/editEmail" method=POST>
+		<input type="hidden" name="identifier" value='{{email.identifier}}'>
+		Subject: <input name="subject" width=200 value='{{email.subject}}'><br>
+		put END_DATE where you want the expiration date <br>
+		Text: <textarea name='emailText' rows=30 cols=80>{{email.text}}</textarea><br>
+		TEST INFO FOR TEST EMAIL <br>
+		Email <input name="email" value={{user.email}}>
+		End date <input name="endDate" value='{{sub.endDate|date:"Y-m-d H:m:s"}}'>
+		<input type="submit" name="Test" value='Test'>
+		<input type="submit" name="Save" value='Save'>
+	</form>
+
+</body>
+</html>
+

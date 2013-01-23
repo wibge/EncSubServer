@@ -1,0 +1,24 @@
+<h3>{{user.email}} [{{user.id}}]</h3>
+
+<form action='/user/giftPurchase' method='GET'>
+	<input type='hidden' name='email' value='{{user.email}}'>
+	Apply Giftcode: <input name='giftcode'/>
+	<input type="submit"/>
+</form>
+
+<b>Subscriptions</b>
+<ul>
+	{% for purchase in subscriptions %}
+	  <li> {{purchase}}  GiftCode: {{purchase.giftcode}}</li>
+	{% endfor %}
+</ul>
+Current Subscription: {{currentsub}}
+<br>
+<br>
+<b>Devices</b>
+<ul>
+{% for device in devices %}
+  <li> {{device}} </li>
+{% endfor %}
+</ul>
+

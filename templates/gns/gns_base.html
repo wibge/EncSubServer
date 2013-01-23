@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+  <link rel="shortcut icon" href="/static/favicon.ico" />
+  <title>{% block title %}{% endblock %}</title>
+  <link type="text/css" rel="stylesheet" href="/static/css/gns.css" />
+  {% block head %}{% endblock %}
+</head>
+<body id="index">
+<div class="main_new" style="background-image:url(/static/index_background_topbar.png);">
+  <div class="header">
+    <div class="logo"><a href="/"><img src="/static/logo.png" BORDER=0 /></a></div>
+    <div class="link" style="right:45px;">
+      {% if user %}
+        {{user.email}}
+      {% else %}
+        <a href="/auth/loginForm?redirect=/">Login</a>
+      {% endif %}
+      | <a href="/auth/logout">Logout</a>
+    </div>
+    <div class="link" style="top:10px; width:24px; height:24px; right:0px;">&nbsp;</div>
+    <div class="menu" style=" top:67px;"> 
+	    <a href="/"><div class="menu_a" id="homeM"><div class="edgeL"></div><div class="edgeR"></div><div class="mText">HOME</div></div></a>
+	    <a href="/subs/mySubscriptions"><div class="menu_a" id="homeM"><div class="edgeL"></div><div class="edgeR"></div><div class="mText">SUBSCRIPTIONS</div></div></a>
+	    <a href="/devices/myDevices"><div class="menu_a" id="homeM"><div class="edgeL"></div><div class="edgeR"></div><div class="mText">DEVICES</div></div></a>
+	    <a href="http://www.globalnavsource.com"><div class="menu_a" id="homeM"><div class="edgeL"></div><div class="edgeR"></div><div class="mText">GlobalNavSource.com</div></div></a>
+    </div>
+  </div>
+  <div class="content" style="height:40px;">
+    <div class="nav-drop" id="tech-drop">
+    </div>
+  </div>  
+  <div class="content" style="height:0px;">
+    <!-- vertical spacer -->
+  </div>
+  <div class="content" style="height:770px;">
+    <table border="0" width="100%" height="100%">
+      <tr>
+        <td width="100%" style="padding:0px 25px 0 40px;" valign="top">
+    {% block content %}{% endblock %}
+    {% block footer %}
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="border-dot"></div>
+  </div>
+  <div class="foot_eps">
+  <p>Copyright &#169; 2010 GlobalNavSource.com | All Rights Reserved</p></div>  
+  {% endblock %}
+</body>
+</html>

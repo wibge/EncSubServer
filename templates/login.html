@@ -1,0 +1,35 @@
+{% extends config.base_template %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<h1>Please log in</h1>
+<div style="height: 50px;"></div>
+<div>
+  <form action="/auth/login" method="post">
+    <table>
+      <tr>
+        <td>Username:</td>
+        <td><input type="text" name="username" size="30"></td>
+      </tr>
+      <tr>
+        <td>Password:</td>
+        <td><input type="password" name="password" size="30" /></td>
+      <tr>
+    </table>
+  	<input type="hidden" name="redirect" value="{{redirect}}" />
+  	<div style="margin-top:20px;">
+    	<input type="submit" value="Sign In" class="button"/>
+    </div>
+  </form>
+</div>
+
+<div class="login-instructions">
+  <p>Please use the use the email address and password you used when setting 
+  up your {{config.display_name}} app. </p>
+
+  <p><a href="/user/resetPasswordForm">Reset Your Password</a></p>
+  <p><a href="/register/form">Create An Account</a></p>
+  
+</div>
+{% endblock %}

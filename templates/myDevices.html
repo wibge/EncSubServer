@@ -1,0 +1,30 @@
+{% extends config.base_template %}
+
+{% block title %}My Devices{% endblock %}
+
+{% block content %}
+<h1>Devices for {{user.email}}</h1>
+<div style="height:20px;"></div>
+
+{% if devices %}
+  <table class="subscriptions">
+    <tr>
+      <th>Model</th>
+      <th>UDID</th>
+      <th>Created Date</th>
+      <th>&nbsp;</th>
+    </tr>
+    {% for dev in devices %}
+      <tr>
+        <td>{{dev.model}}</td>
+        <td>{{dev.udid}}</td>
+        <td>{{dev.created|date:"m/d/Y"}}</td>
+        <td><a href="/devices/delete?udid={{dev.udid}}">deauthorize</a></td>
+      </tr>
+    {% endfor %}
+  </table>
+{% else %}
+None
+{% endif %}
+
+{% endblock %}

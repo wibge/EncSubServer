@@ -1,0 +1,66 @@
+<!DOCTYPE html SYSTEM "http://www.w3.org/TR/xhtml-basic/xhtml-basic11.dtd">
+<html>
+    <head>
+        <link rel="shortcut icon" href="{{ STATIC_URL }}favicon.ico">
+        <title>
+            {% block title %}{% endblock %}
+        </title>
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/gaia.css">
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/gaia-sub.css">
+</script>
+    </head>
+    <body>
+        {% block head %}{% endblock %}
+        <div class="head_bar">
+            <div class="link" style="float:right; padding-right: 50px">
+                {% if user %} {{user.email}} | <a href="/auth/logout">Logout</a> {% else %} <a href="/auth/loginForm">Login</a> {% endif %}
+            </div>
+            <div class="container_12">
+                <div class="logo">
+                    <a href="/"><img src="{{ STATIC_URL }}img/GAIA-WEB-LOGO.png" alt="" border="0"></a>
+                </div>
+                <div class="topmenu">
+                    <ul class="dropdown">
+                        <!-- Edit these links to modify the header -->
+                        <li>
+                            <a href="/"><span>Home</span></a>
+                        </li>
+                        <li>
+                            <a href="/subs/mySubscriptions"><span>Subscriptions</span></a>
+                        </li>
+                        <li>
+                            <a href="/devices/myDevices"><span>Devices</span></a>
+                        </li>
+                        <li>
+                            <a href="http://gaiagps.com/"><span>Gaia GPS</span></a>
+                        </li><!-- end header links -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="middle" style="padding-top:100px">
+                <div class="container_12">
+
+                    {% block content %} {% endblock %}
+
+                </div>
+            </div>
+        </div><!-- footer content -->
+        <div class="footer">
+            <div class="container_12">
+                <div class="row">
+                    <div class="col col_1_4">
+                        <div class="social-box">
+                            <a href="http://www.facebook.com/GaiaGPS"><img src="{{ STATIC_URL }}img/social_facebook.png" width="16" height="16" alt=""></a> <a href="https://twitter.com/trailbehind"><img src="{{ STATIC_URL }}img/social_twitter.png" width="16" height="16" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="tos">
+                        <a href="http://www.gaiagps.com/terms_of_use">Terms of Service</a>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </body>
+</html>

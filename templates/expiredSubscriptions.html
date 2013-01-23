@@ -1,0 +1,29 @@
+{% extends config.base_template %}
+
+{% block title %}Expired Subscriptions{% endblock %}
+
+{% block content %}
+<h1>Expired Subscriptions</h1>
+{% if subscriptions %}
+  <table class="subscriptions expired">
+    <tr>
+      <th>Name</th>
+      <th class="date">Start Date</th>
+      <th class="date">End Date</th>
+    </tr>
+    {% for sub in subscriptions %}
+      <tr>
+        <td>{{sub.subscriptionPlan.name}}</td>
+        <td class="date">{{sub.startDate|date:"m/d/Y"}}</td>
+        <td class="date">{{sub.endDate|date:"m/d/Y"}}</td>
+      </tr>
+    {% endfor %}
+  </table>
+{% else %}
+None
+{% endif %}
+<div style="margin-top:10px;">
+  <a href="/subs/mySubscriptions">Back to My Subscriptions</a>
+</div>
+
+{% endblock %}

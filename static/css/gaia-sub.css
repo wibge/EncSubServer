@@ -1,0 +1,15 @@
+input.button {
+  border: 1px solid black;
+  color: white;
+  background-color: #323232;
+  padding: 4px;
+  cursor: pointer;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  padding-left: 40px;
+  padding-right: 40px
+}
+
+input.button:hover {
+	color: #1EBCE4;
+}

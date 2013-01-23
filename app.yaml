@@ -1,0 +1,87 @@
+# use gnsbeta for beta testing
+#XXXapplication: gnsbeta
+#application: earthncsub
+#XXXapplication: gnssub
+application: gaiagpssub
+version: 2
+#version: annatest
+runtime: python
+api_version: 1
+
+default_expiration: "24h"
+
+derived_file_type:
+- python_precompiled
+
+handlers:
+
+# original gns handlers
+
+- url: /
+  script: Home.py
+
+- url: /backup/
+  script: backup.py
+  login: admin
+
+- url: /admin/.*
+  script: AdminTools.py
+  login: admin
+
+- url: /report.*
+  script: Report.py
+  login: admin
+
+
+- url: /emailer.*
+  script: Emailer.py
+  login: admin
+
+
+- url: /airportlistings.*
+  script: Airports.py
+
+- url: /auth/.*
+  script: Auth.py
+
+- url: /devices/.*
+  script: Devices.py
+
+- url: /plans/.*
+  script: Plans.py
+
+- url: /register/.*
+  script: Registration.py
+
+- url: /purchase/.*
+  script: Purchase.py
+  secure: always
+
+- url: /static
+  static_dir: static
+
+- url: /subs/.*
+  script: Subscriptions.py
+
+- url: /user/.*
+  script: ManageUser.py
+
+- url: /plates/update
+  script: PlateFetcher.py
+
+- url: /tiles
+  static_dir: numbertiles
+
+#openID
+
+- url: /id/.*
+  script: OpenIdProvider.py
+
+builtins:
+- datastore_admin: on
+- remote_api: on
+
+admin_console:
+  pages:
+  - name: Appstats
+    url: /_ah/stats

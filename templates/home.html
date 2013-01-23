@@ -1,0 +1,12 @@
+{% extends config.base_template %}
+
+{% block title %}{{config.display_name}}{% endblock %}
+
+{% block content %}
+<div>
+<h1>Welcome to the {{config.display_name}} subscription site.</h1>
+<br/>
+<p>You can use this site to manage your subscriptions and devices for the {{config.display_name}} app.</p>
+<a href="/subs/mySubscriptions">Go get some subscriptions</a>
+</div>
+{% endblock %}
